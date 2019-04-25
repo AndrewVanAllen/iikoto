@@ -1,12 +1,12 @@
   class Imageboard
-  get '/admin' do
+  get '/login' do
     locals = {
       title: "Admin Login - #{$CONFIG[:site_name]}",
       type: 'admin',
       boards: Board.all
     }
 
-    slim :admin, locals: locals
+    slim :login, locals: locals
   end
 
   get "/delete/:post" do
@@ -77,20 +77,20 @@
     return redirect '/'
   end
 
-  post '/admin' do
+  post '/login' do
     if !params.has_key?("username") or !params.has_key?("password")
       flash[:error] = "Username or password missing."
-      return redirect "/admin"
+      return redirect "/login"
     end
 
     if !User.exists?(params[:username])
       flash[:error] = "Username or password invalid!"
-      return redirect "/admin"
+      return redirect "/login"
     end
 
     if !User.authorized?(params[:username], params[:password])
       flash[:error] = "Username or password invalid!"
-      return redirect "/admin"
+      return redirect "/login"
     end
 
     session[:user] = params[:username]
