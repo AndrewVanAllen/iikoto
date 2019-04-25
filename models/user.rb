@@ -1,4 +1,4 @@
-require 'digest'
+require 'bcrypt'
 
 class User < ActiveRecord::Base
   def self.exists? username
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     end
 
     salt = user.salt
-    digest = Digest::SHA512.hexdigest(password + salt)
+    digest = BCrypt::Engine.hash_secret(password, salt)
 
     return (digest == user.password)
   end

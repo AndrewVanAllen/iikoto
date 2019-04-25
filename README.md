@@ -9,6 +9,9 @@ it tries to be good at security [citation needed]
 the style is based on steinuil's negoto and stein has worked with me to
 make the interface look acceptable. thanks stein.
 
+setup
+-----
+
 the requirements are:
 - gem 'sinatra'
 - gem 'sqlite3' # For ActiveRecord's sqlite support (I think)
@@ -19,6 +22,9 @@ the requirements are:
 - gem 'mini_magick'
 - gem 'rack_csrf'
 - gem 'mimemagic'
+
+You have to intialize the database with a user and a board (will be changable from admin panel eventually, maybe even in-browser setup). You can do this by running `./setup.rb install`. Afterwards, you can run `rackup` and navigate to your browser.
+
 
 screenshot
 ----------
